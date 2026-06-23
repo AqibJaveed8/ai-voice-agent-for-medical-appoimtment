@@ -1,0 +1,162 @@
+{
+  "name": "Ai voice agent",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f7a4fd04-07a4-4e44-bdbd-b1a29eaf17c7",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "926651bc-e05d-4ad2-8715-89111f9ef7ed",
+      "name": "Webhook",
+      "webhookId": "f7a4fd04-07a4-4e44-bdbd-b1a29eaf17c7"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        416,
+        0
+      ],
+      "id": "bf0232cc-9ed4-4847-b43d-a0e3fe0c6abf",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1QTdNqxAe7RiBdy-wcvEeTWFcchEXN_NwiPCaV1Jt0mI",
+          "mode": "list",
+          "cachedResultName": "voice_agent_sheet",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QTdNqxAe7RiBdy-wcvEeTWFcchEXN_NwiPCaV1Jt0mI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QTdNqxAe7RiBdy-wcvEeTWFcchEXN_NwiPCaV1Jt0mI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "time ": "={{ $json.body.time }}",
+            "Patient_name": "={{ $json.body.patient_name }}",
+            "date": "={{ $json.body.date }}",
+            "reason": "={{ $json.body.reason }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Patient_name",
+              "displayName": "Patient_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "time ",
+              "displayName": "time ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "reason",
+              "displayName": "reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        208,
+        0
+      ],
+      "id": "6fbf3881-7d8d-4b95-abbb-91a3ee37374e",
+      "name": "voice_agent_sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SO4JevqH7t4QrHh6",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "voice_agent_sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "voice_agent_sheet": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "d147aab2-0477-4a86-b57f-7365824d5ac9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "523da979298eb8c340fdd7fc560c6ba6eaa90d0b92d34ece2e1e9c3bd4f3a97c"
+  },
+  "nodeGroups": [],
+  "id": "T9TztKeQv6SMaC1G",
+  "tags": []
+}
